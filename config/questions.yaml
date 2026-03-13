@@ -1,0 +1,84 @@
+version: 1
+
+# 题库结构：
+# roles:
+#   <role_name>:
+#     difficulties:
+#       <difficulty_name>:
+#         - id: <unique_id>
+#           title: <short title>
+#           prompt: <question text>
+#           tags: [tag1, tag2]
+#           expected_points: [point1, point2]
+roles:
+  backend_python:
+    name: "后端-Python"
+    difficulties:
+      junior:
+        - id: py-jr-001
+          title: "list vs tuple"
+          prompt: "请解释 Python 中 list 和 tuple 的区别，以及各自适合的使用场景。"
+          tags: ["python", "data-structure"]
+          expected_points:
+            - "可变/不可变"
+            - "性能与内存差异（概念即可）"
+            - "哈希与作为 dict key 的条件"
+        - id: py-jr-002
+          title: "GIL"
+          prompt: "请解释什么是 GIL？它对多线程/多进程有什么影响？"
+          tags: ["python", "concurrency"]
+          expected_points:
+            - "GIL 的含义与影响范围"
+            - "I/O 密集 vs CPU 密集的选择"
+            - "多进程/协程的替代方案"
+
+      mid:
+        - id: py-md-001
+          title: "asyncio"
+          prompt: "你如何在 Python 中设计一个高并发 I/O 服务？asyncio 方案的关键点是什么？"
+          tags: ["python", "asyncio", "backend"]
+          expected_points:
+            - "事件循环/协程/await"
+            - "连接池与超时/重试"
+            - "背压与限流"
+        - id: py-md-002
+          title: "fastapi deps"
+          prompt: "在 FastAPI 中你如何组织依赖注入、配置管理与分层结构？"
+          tags: ["python", "fastapi", "architecture"]
+          expected_points:
+            - "依赖注入与生命周期"
+            - "配置分环境与密钥管理"
+            - "service/repo 分层"
+
+      senior:
+        - id: py-sr-001
+          title: "distributed tracing"
+          prompt: "如果线上出现间歇性高延迟，你会如何定位？请描述从指标、日志到链路追踪的排查路径。"
+          tags: ["observability", "tracing", "backend", "debugging"]
+          expected_points:
+            - "SLO/指标与分位数"
+            - "日志关联与采样策略"
+            - "trace/span 与瓶颈归因"
+
+  frontend_web:
+    name: "前端-Web"
+    difficulties:
+      junior:
+        - id: fe-jr-001
+          title: "event loop"
+          prompt: "请解释浏览器中的事件循环（event loop），以及宏任务/微任务的区别。"
+          tags: ["javascript", "event-loop"]
+          expected_points:
+            - "任务队列与执行顺序"
+            - "Promise 微任务"
+            - "setTimeout 宏任务"
+      mid:
+        - id: fe-md-001
+          title: "react perf"
+          prompt: "React 项目渲染变慢时你会如何定位与优化？"
+          tags: ["react", "performance"]
+          expected_points:
+            - "渲染次数分析"
+            - "memo/useMemo/useCallback 的使用边界"
+            - "列表虚拟化与分包"
+

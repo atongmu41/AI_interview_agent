@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI 简历面试助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body class="app">
+    <header class="app-header">
+      <h1>AI 简历面试助手</h1>
+      <p>从 PDF 简历到个性化面试与评估的一站式体验</p>
+    </header>
+
+    <main class="app-main">
+      <section class="panel">
+        <h2>简历上传区</h2>
+        <form id="resume-form">
+          <div class="form-row">
+            <label for="pdf-file">PDF 简历文件</label>
+            <input type="file" id="pdf-file" name="file" accept="application/pdf" required />
+          </div>
+          <div class="form-row half">
+            <div>
+              <label for="role">岗位选择</label>
+              <select id="role" name="role">
+                <option value="backend_python">后端 - Python</option>
+                <option value="frontend_web">前端 - Web</option>
+              </select>
+            </div>
+            <div>
+              <label for="role-custom">自定义岗位（可选）</label>
+              <input
+                id="role-custom"
+                name="role_custom"
+                type="text"
+                placeholder="例如：后端开发工程师（Go）"
+              />
+              <small>如填写，则用于生成岗位要求画像；题库仍按左侧固定岗位抽题。</small>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="difficulty">难度</label>
+            <select id="difficulty" name="difficulty">
+              <option value="junior">Junior</option>
+              <option value="mid">Mid</option>
+              <option value="senior">Senior</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary">上传并解析</button>
+        </form>
+
+        <div id="resume-preview" class="preview">
+          <h3>解析结果预览</h3>
+          <pre id="resume-preview-content">尚未上传简历。</pre>
+        </div>
+
+        <div id="job-profile" class="preview">
+          <h3>岗位要求</h3>
+          <pre id="job-profile-content">暂无岗位要求信息。</pre>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>实时面试界面</h2>
+        <div class="chat-container">
+          <div id="chat-window" class="chat-window">
+            <div class="bubble system">
+              请先上传简历，我们会为你生成个性化问题。
+            </div>
+          </div>
+          <div class="chat-controls">
+            <div class="timer">
+              <span>计时器：</span>
+              <span id="timer-display">00:00</span>
+            </div>
+            <div class="chat-input-row">
+              <input id="chat-input" type="text" placeholder="在这里作答..." />
+              <button id="send-btn" class="btn-secondary">发送</button>
+            </div>
+            <div class="chat-actions">
+              <button id="interrupt-btn" class="btn-ghost">打断</button>
+              <button id="continue-btn" class="btn-ghost">继续</button>
+              <button id="terminate-btn" class="btn-danger">终止面试</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>结果展示</h2>
+        <div class="results">
+          <div class="results-section">
+            <h3>评估报告</h3>
+            <div id="evaluation-report" class="evaluation-report-placeholder">暂无评估结果。</div>
+          </div>
+          <div class="results-section">
+            <h3>历史记录</h3>
+            <ul id="history-list"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>AI Interview Agent · Web UI</span>
+    </footer>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
+

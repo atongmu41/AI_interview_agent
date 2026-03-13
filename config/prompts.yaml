@@ -1,0 +1,13 @@
+# config/prompts.yaml
+interviewer:
+  # 引用 .md 文件
+  system_prompt_file: "prompts/interviewer.md"
+  
+  # 可覆盖的参数
+  temperature: 0.7
+  max_tokens: 500
+
+evaluator:
+  system_prompt_file: "prompts/evaluator.md"
+  temperature: 0.3
+  max_tokens: 800

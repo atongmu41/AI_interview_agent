@@ -1,0 +1,8 @@
+httpx
+pyyaml
+qdrant-client
+pdfplumber
+fastapi
+uvicorn
+python-multipart
+
