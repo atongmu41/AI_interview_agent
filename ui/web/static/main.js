@@ -283,7 +283,37 @@ function renderEvaluationReport(e) {
 }
 
 function handleInterrupt() {
-  appendBubble("system", "你选择了打断本轮面试（当前仅前端提示，后端控制待接入）。");
+  appendBubble("system", "已打断当前问题，正在切换到一个新问题...");
+  interviewState = "question";
+
+  const payload = {
+    state: "question",
+    history: chatHistory,
+    candidate_latest: "",
+  };
+
+  fetch("/api/interview_step", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => res.json())
+    .then(async (data) => {
+      const reply = data.reply || "（暂无回复）";
+      const tag = data.tag || "";
+      appendBubble("ai", reply);
+      chatHistory.push({ role: "面试官", text: reply });
+      interviewState = "followup";
+
+      if (tag.includes("结束面试")) {
+        await requestEvaluationAndShowReport("面试流程已结束，已生成评估报告。");
+      } else if (tag.includes("进入评估")) {
+        await requestEvaluationAndShowReport("当前题目已进入评估阶段，已生成评估报告。");
+      }
+    })
+    .catch((err) => {
+      appendBubble("system", `切换问题失败：${err}`);
+    });
 }
 
 function handleContinue() {
